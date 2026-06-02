@@ -75,7 +75,7 @@ cd Calzado_JYR_Movil
 Instalar dependencias:
 
 ```bash
-npm install
+pnpm install
 ```
 
 Ejecutar el proyecto:
