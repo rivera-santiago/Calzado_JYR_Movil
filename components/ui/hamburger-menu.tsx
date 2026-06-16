@@ -25,6 +25,7 @@ type MenuItem = {
 
 const MENU_ITEMS: MenuItem[] = [
   { icon: 'home-outline', label: 'Inicio', route: '/(tabs)' },
+  { icon: 'heart-outline', label: 'Favoritos', route: '/(tabs)/favorites' },
   { icon: 'cart-outline', label: 'Carrito', route: '/(tabs)/cart' },
   { icon: 'checkbox-outline', label: 'Tareas', route: '/(tabs)/tasks' },
   { icon: 'wallet-outline', label: 'Checkout', route: '/(tabs)/checkout' },

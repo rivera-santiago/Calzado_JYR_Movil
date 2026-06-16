@@ -1,103 +1,56 @@
-# 👟 Calzado JYR Mobile
+# Calzado J&R — App Móvil
 
-Aplicación móvil desarrollada con React Native, Expo y TypeScript para la gestión y visualización del catálogo de productos de Calzado JYR.
+Aplicación móvil para la gestión y venta de calzado artesanal de la empresa **Calzado J&R**. Desarrollada con React Native (Expo) y TypeScript.
 
-## 📱 Descripción
+## Funcionalidades
 
-Calzado JYR Mobile es una aplicación móvil que permite a los usuarios consultar productos de calzado, acceder a información de su perfil y utilizar funcionalidades de autenticación como inicio de sesión y registro.
+- Catálogo de productos con búsqueda y filtros por categoría (Caballero, Dama, Infantil)
+- Carrito de compras con persistencia local
+- Favoritos (guardar productos)
+- Gestión de tareas (pendientes)
+- Autenticación de usuarios (login, registro, recuperación)
+- Sincronización offline con Supabase
+- Menú tipo hamburguesa con navegación rápida
+- Modo oscuro/claro
 
-El proyecto fue desarrollado siguiendo una arquitectura modular para facilitar el mantenimiento, escalabilidad y reutilización del código.
+## Tecnologías
 
----
+- **React Native** + **Expo SDK 54**
+- **TypeScript**
+- **Expo Router** (navegación por archivos)
+- **Zustand** (estado global)
+- **TanStack React Query** (datos del servidor)
+- **Supabase** (backend)
+- **SQLite** (base de datos local)
 
-## 🚀 Tecnologías Utilizadas
+## Requisitos
 
-* React Native
-* Expo
-* Expo Router
-* TypeScript
-* Zustand
-* JavaScript ES6+
-* REST API
+- Node.js 18+
+- pnpm
 
----
-
-## 📂 Estructura del Proyecto
-
-```text
-app/
-├── (auth)/
-│   ├── login.tsx
-│   ├── register.tsx
-│   └── forgot-password.tsx
-│
-├── (tabs)/
-│   ├── index.tsx
-│   ├── catalog.tsx
-│   └── profile.tsx
-
-components/
-services/
-store/
-types/
-assets/
-```
-
----
-
-## ✨ Funcionalidades
-
-* Inicio de sesión de usuarios.
-* Registro de nuevos usuarios.
-* Recuperación de contraseña.
-* Visualización de catálogo de productos.
-* Gestión de perfil de usuario.
-* Consumo de servicios API.
-* Navegación mediante pestañas.
-* Manejo de estado global con Zustand.
-
----
-
-## ⚙️ Instalación
-
-Clonar el repositorio:
-
-```bash
-git clone https://github.com/rivera-santiago/Calzado_JYR_Movil.git
-```
-
-Ingresar a la carpeta del proyecto:
-
-```bash
-cd Calzado_JYR_Movil
-```
-
-Instalar dependencias:
+## Instalación y ejecución
 
 ```bash
 pnpm install
+pnpm start -- --tunnel
 ```
 
-Ejecutar el proyecto:
+Escanea el código QR con Expo Go en tu celular.
 
-```bash
-npx expo start
+## Estructura del proyecto
+
+```
+app/          → Pantallas y navegación (file-based routing)
+components/   → Componentes reutilizables
+services/     → API, Supabase, sincronización
+store/        → Estado global (Zustand)
+hooks/        → Hooks personalizados
+constants/    → Tema y colores
+lib/          → Utilidades (DB, SecureStore)
+types/        → Tipos de TypeScript
+utils/        → Formatos (precios, etc.)
 ```
 
----
+## Contacto
 
-## 📱 Ejecución
-
-La aplicación puede ejecutarse mediante:
-
-* Expo Go
-* Emulador Android
-* Simulador iOS
-* Navegador Web (Expo Web)
-
-
-
-
-
-
-
+Desarrollado para Calzado J&R — Calidad y estilo a tu alcance.
