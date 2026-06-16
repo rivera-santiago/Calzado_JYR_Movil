@@ -1,20 +1,20 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { ArrowLeft, Eye, EyeOff, Lock, Mail, ShieldAlert } from 'lucide-react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
-    ActivityIndicator,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import * as z from 'zod';
 
@@ -61,8 +61,9 @@ export default function LoginScreen() {
       const response = await loginAPI(data.email, data.password);
       await setAuth(response.user, response.access_token);
       router.replace('/(tabs)');
-    } catch (error: any) {
-      setErrorMessage(error.message || 'Error al iniciar sesión');
+    } catch (error: unknown) {
+      const msg = (error && typeof error === 'object' && 'message' in error) ? String((error as { message?: unknown }).message) : String(error)
+      setErrorMessage(msg || 'Error al iniciar sesión');
     } finally {
       setApiLoading(false);
     }

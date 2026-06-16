@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import * as z from 'zod';
@@ -28,8 +28,9 @@ export default function ForgotPasswordScreen() {
     try {
       const res = await forgotPasswordAPI(data.email);
       setMessage(res.message || 'Si el correo existe, recibirás instrucciones.');
-    } catch (err: any) {
-      setMessage(err.message || 'Error procesando solicitud');
+    } catch (err: unknown) {
+      const msg = (err && typeof err === 'object' && 'message' in err) ? String((err as { message?: unknown }).message) : String(err)
+      setMessage(msg || 'Error procesando solicitud');
     } finally {
       setApiLoading(false);
     }

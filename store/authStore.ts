@@ -1,5 +1,5 @@
+import { deleteItem, getItem, setItem } from '@/lib/secureStore';
 import { create } from 'zustand';
-import * as SecureStore from 'expo-secure-store';
 import { AuthState, User } from '../types/auth';
 
 const TOKEN_KEY = 'calzado_jyr_token';
@@ -13,8 +13,8 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   setAuth: async (user: User, token: string) => {
     try {
-      await SecureStore.setItemAsync(TOKEN_KEY, token);
-      await SecureStore.setItemAsync(USER_KEY, JSON.stringify(user));
+      await setItem(TOKEN_KEY, token)
+      await setItem(USER_KEY, JSON.stringify(user))
       set({ user, token, isAuthenticated: true, isLoading: false });
     } catch (error) {
       console.error('Error saving auth credentials:', error);
@@ -23,8 +23,8 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   clearAuth: async () => {
     try {
-      await SecureStore.deleteItemAsync(TOKEN_KEY);
-      await SecureStore.deleteItemAsync(USER_KEY);
+      await deleteItem(TOKEN_KEY)
+      await deleteItem(USER_KEY)
       set({ user: null, token: null, isAuthenticated: false, isLoading: false });
     } catch (error) {
       console.error('Error clearing auth credentials:', error);
@@ -34,8 +34,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   initializeAuth: async () => {
     try {
       set({ isLoading: true });
-      const token = await SecureStore.getItemAsync(TOKEN_KEY);
-      const userStr = await SecureStore.getItemAsync(USER_KEY);
+      const token = await getItem(TOKEN_KEY)
+      const userStr = await getItem(USER_KEY)
 
       if (token && userStr) {
         const user = JSON.parse(userStr) as User;

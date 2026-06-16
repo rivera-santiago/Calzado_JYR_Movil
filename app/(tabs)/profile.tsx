@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import { Briefcase, LogIn, LogOut, Mail, Shield, User as UserIcon } from 'lucide-react-native';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
@@ -12,6 +12,10 @@ export default function ProfileScreen() {
   const colorScheme = useColorScheme();
   const { user, isAuthenticated, clearAuth } = useAuthStore();
   const activeColors = colorScheme === 'dark' ? Colors.dark : Colors.light;
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  React.useEffect(() => {
+    Animated.timing(fadeAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start()
+  }, [fadeAnim])
 
   const handleLogout = async () => {
     await clearAuth();
@@ -24,7 +28,7 @@ export default function ProfileScreen() {
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: activeColors.background }]}>
-      {/* Header Profile background cover */}
+      <Animated.View style={{ opacity: fadeAnim }}>
       <View style={[styles.headerBanner, { backgroundColor: activeColors.primary }]}>
         <View style={styles.bannerOverlay} />
       </View>
@@ -119,6 +123,7 @@ export default function ProfileScreen() {
           </View>
         )}
       </View>
+      </Animated.View>
     </ScrollView>
   );
 }

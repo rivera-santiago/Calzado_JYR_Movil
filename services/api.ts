@@ -15,19 +15,19 @@ export const API_BASE_URL = getBaseUrl();
 // Beautiful Unsplash product image fallbacks
 const MOCK_IMAGES = {
   caballero: [
-    'https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1449505278894-297fdb3edbc1?q=80&w=600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=600&auto=format&fit=crop',    // Oxford de Cuero Premium
+    'https://images.unsplash.com/photo-1608236414768-9c0f4d5cf1b3?q=80&w=600&auto=format&fit=crop',    // Mocasines Confort Flex
+    'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=600&auto=format&fit=crop',    // Botas de Aventura Casual
   ],
   dama: [
-    'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1596702994290-9f29c5a172e9?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?q=80&w=600&auto=format&fit=crop',    // Stilettos Dorados de Gala
+    'https://images.unsplash.com/photo-1596702994290-9f29c5a172e9?q=80&w=600&auto=format&fit=crop',    // Baletas Ortopédicas Flex
+    'https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=600&auto=format&fit=crop',    // Sandalias Plataforma Chic
   ],
   infantil: [
-    'https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1519419691348-3b3433c4c20e?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?q=80&w=600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=600&auto=format&fit=crop',    // Zapatillas LED Flash
+    'https://images.unsplash.com/photo-1519419691348-3b3433c4c20e?q=80&w=600&auto=format&fit=crop',    // Botitas de Lluvia Splash
+    'https://images.unsplash.com/photo-1594322436404-5a0526db4d13?q=80&w=600&auto=format&fit=crop',    // Sandalias Deportivas Kidz
   ],
 };
 
@@ -44,7 +44,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Calzado formal de cuero vacuno legítimo con costuras hechas a mano.',
     color: 'Marrón Imperial',
     category_id: 'caballero',
-    image_url: MOCK_IMAGES.caballero[0],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO0zYPaZr6f3X-YdGdyfYN4ViuxPvc8Yy-psI3RUGjeQ&s=10',
     state: true,
   },
   {
@@ -53,7 +53,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Mocasines ultra cómodos ideales para el uso diario en oficina o casual.',
     color: 'Negro Mate',
     category_id: 'caballero',
-    image_url: MOCK_IMAGES.caballero[1],
+    image_url: 'https://www.hendz.co/wp-content/uploads/2020/03/luxury-men-s-leather-casual-loafers-in-d_vpEJ08RtSyK-d23jFVdGag_yX7kKfi2SpWanhBJGLJCVA_sd.jpeg',
     state: true,
   },
   {
@@ -62,7 +62,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Botas de cuero nobuck con suela antideslizante todoterreno.',
     color: 'Camel',
     category_id: 'caballero',
-    image_url: MOCK_IMAGES.caballero[2],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxKhXv0Ua3Qw9WTFR4kw3Zv25CC1DQY0G5LD2af-elmQ&s=10',
     state: true,
   },
   {
@@ -71,7 +71,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Tacos altos finos con acabado satinado. Brillo y elegancia para noches especiales.',
     color: 'Dorado J&R',
     category_id: 'dama',
-    image_url: MOCK_IMAGES.dama[0],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHGZUQUTAdrsbiUbPfF821CxwfoCd9SlvWdi4Kffrgcg&s=10',
     state: true,
   },
   {
@@ -80,7 +80,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Baletas planas con plantilla anatómica acolchada para máxima suavidad.',
     color: 'Rojo Carmín',
     category_id: 'dama',
-    image_url: MOCK_IMAGES.dama[1],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcT0EM722tP8rvAnJxuQfm84ETHyaOlqLurUBOnlJqyQ&s=10',
     state: true,
   },
   {
@@ -89,7 +89,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Sandalias cómodas con plataforma liviana forrada de yute natural.',
     color: 'Beige',
     category_id: 'dama',
-    image_url: MOCK_IMAGES.dama[2],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhxnQ5AJTCOSwZg4B-3MHX8SUfugprO-AyOpzT1FR3ww&s=10',
     state: true,
   },
   {
@@ -98,7 +98,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Zapatillas deportivas infantiles con luces LED interactivas en la suela.',
     color: 'Azul Eléctrico',
     category_id: 'infantil',
-    image_url: MOCK_IMAGES.infantil[0],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzoBCfDIBu-BPiYXx7-z3YFUL3-ym6chFBemtwypI9XQ&s=10',
     state: true,
   },
   {
@@ -107,7 +107,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Botas impermeables de goma flexible con forro térmico interno.',
     color: 'Amarillo Sol',
     category_id: 'infantil',
-    image_url: MOCK_IMAGES.infantil[1],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNnEdjcT-gQDcn2qg09GyYF0QJPCa5PQAZM5elx3AyHA&s=10',
     state: true,
   },
   {
@@ -116,7 +116,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Sandalias infantiles con doble ajuste de velcro de alta durabilidad.',
     color: 'Verde Dinosaurio',
     category_id: 'infantil',
-    image_url: MOCK_IMAGES.infantil[2],
+    image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2OEs5jqjBfS8yDzY5EtikwV6avwblOrTPe4kpNgP5Rw&s=10',
     state: true,
   },
 ];

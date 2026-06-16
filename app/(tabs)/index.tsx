@@ -1,7 +1,6 @@
 import { useRouter } from 'expo-router';
 import {
     Award,
-    ChevronRight,
     Factory,
     Heart,
     LayoutDashboard,
@@ -13,8 +12,8 @@ import {
     ShieldCheck,
     Star,
 } from 'lucide-react-native';
-import React from 'react';
 import {
+    Animated,
     Image,
     Linking,
     Platform,
@@ -25,9 +24,11 @@ import {
     View
 } from 'react-native';
 
+import { HamburgerButton } from '@/components/ui/hamburger-button';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAuthStore } from '@/store/authStore';
+import React from 'react';
 
 // width not currently used but kept for future responsive tweaks
 
@@ -37,12 +38,17 @@ export default function HomeScreen() {
   const { isAuthenticated, user } = useAuthStore();
   const activeColors = colorScheme === 'dark' ? Colors.dark : Colors.light;
 
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  React.useEffect(() => {
+    Animated.timing(fadeAnim, { toValue: 1, duration: 500, useNativeDriver: true }).start()
+  }, [fadeAnim])
+
   const categories = [
     {
       id: 'caballero',
       name: 'Caballero',
       desc: 'Zapatos de vestir, Oxford, Botas casuales',
-      image: 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=600&auto=format&fit=crop',
     },
     {
       id: 'dama',
@@ -54,7 +60,7 @@ export default function HomeScreen() {
       id: 'infantil',
       name: 'Infantil',
       desc: 'Zapatillas interactivas, calzado ergonómico',
-      image: 'https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1594322436404-5a0526db4d13?q=80&w=600&auto=format&fit=crop',
     },
   ];
 
@@ -91,8 +97,10 @@ export default function HomeScreen() {
         style={[styles.container, { backgroundColor: activeColors.background }]}
         showsVerticalScrollIndicator={false}
       >
+        <Animated.View style={{ opacity: fadeAnim }}>
         {/* Dynamic Top App Bar */}
         <View style={[styles.appBar, { backgroundColor: activeColors.card, borderBottomColor: activeColors.border }]}>
+          <HamburgerButton />
           <View style={styles.appBarInner}>
             <Image source={require('@/assets/images/icon.png')} style={styles.logoMini} />
             <Text style={[styles.appBarTitle, { color: activeColors.text }]}>CALZADO J&R</Text>
@@ -153,14 +161,14 @@ export default function HomeScreen() {
                 style={[styles.categoryCard, { backgroundColor: activeColors.card, borderColor: activeColors.border }]}
                 onPress={handleCategoryPress}
               >
-                <Image source={{ uri: cat.image }} style={styles.categoryCardImage} />
+                <Image source={{ uri: cat.image }} style={styles.categoryCardImage} resizeMode="cover" />
                 <View style={styles.categoryCardOverlay} />
                 <View style={styles.categoryCardBody}>
                   <Text style={styles.categoryCardName}>{cat.name}</Text>
                   <Text style={styles.categoryCardDesc} numberOfLines={1}>{cat.desc}</Text>
                   <View style={styles.categoryCardLink}>
                     <Text style={[styles.categoryCardLinkText, { color: activeColors.secondary }]}>Ver Colección</Text>
-                    <ChevronRight size={14} color={activeColors.secondary} />
+
                   </View>
                 </View>
               </TouchableOpacity>
@@ -232,6 +240,7 @@ export default function HomeScreen() {
         )}
 
         <View style={styles.footerPadding} />
+        </Animated.View>
       </ScrollView>
 
       {/* Floating WhatsApp Action Bubble */}

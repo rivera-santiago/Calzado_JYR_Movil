@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { ActivityIndicator, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import * as z from 'zod';
@@ -40,8 +40,9 @@ export default function RegisterScreen() {
       await registerAPI(data);
       // After successful register, navigate to login
       router.replace('/(auth)/login');
-    } catch (err: any) {
-      setErrorMessage(err.message || 'Error al registrar');
+    } catch (err: unknown) {
+      const msg = (err && typeof err === 'object' && 'message' in err) ? String((err as { message?: unknown }).message) : String(err)
+      setErrorMessage(msg || 'Error al registrar');
     } finally {
       setApiLoading(false);
     }

@@ -7,6 +7,7 @@ export interface Product {
   style_id?: string;
   category_id?: string;
   image_url?: string;
+  price?: number;
   state?: boolean;
 }
 
