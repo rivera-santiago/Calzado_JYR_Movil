@@ -1,50 +1,103 @@
-# Welcome to your Expo app 👋
+# 👟 Calzado JYR Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil desarrollada con React Native, Expo y TypeScript para la gestión y visualización del catálogo de productos de Calzado JYR.
 
-## Get started
+## 📱 Descripción
 
-1. Install dependencies
+Calzado JYR Mobile es una aplicación móvil que permite a los usuarios consultar productos de calzado, acceder a información de su perfil y utilizar funcionalidades de autenticación como inicio de sesión y registro.
 
-   ```bash
-   npm install
-   ```
+El proyecto fue desarrollado siguiendo una arquitectura modular para facilitar el mantenimiento, escalabilidad y reutilización del código.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🚀 Tecnologías Utilizadas
 
-In the output, you'll find options to open the app in a
+* React Native
+* Expo
+* Expo Router
+* TypeScript
+* Zustand
+* JavaScript ES6+
+* REST API
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📂 Estructura del Proyecto
 
-## Get a fresh project
+```text
+app/
+├── (auth)/
+│   ├── login.tsx
+│   ├── register.tsx
+│   └── forgot-password.tsx
+│
+├── (tabs)/
+│   ├── index.tsx
+│   ├── catalog.tsx
+│   └── profile.tsx
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+components/
+services/
+store/
+types/
+assets/
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## ✨ Funcionalidades
 
-To learn more about developing your project with Expo, look at the following resources:
+* Inicio de sesión de usuarios.
+* Registro de nuevos usuarios.
+* Recuperación de contraseña.
+* Visualización de catálogo de productos.
+* Gestión de perfil de usuario.
+* Consumo de servicios API.
+* Navegación mediante pestañas.
+* Manejo de estado global con Zustand.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## ⚙️ Instalación
 
-Join our community of developers creating universal apps.
+Clonar el repositorio:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+git clone https://github.com/rivera-santiago/Calzado_JYR_Movil.git
+```
+
+Ingresar a la carpeta del proyecto:
+
+```bash
+cd Calzado_JYR_Movil
+```
+
+Instalar dependencias:
+
+```bash
+pnpm install
+```
+
+Ejecutar el proyecto:
+
+```bash
+npx expo start
+```
+
+---
+
+## 📱 Ejecución
+
+La aplicación puede ejecutarse mediante:
+
+* Expo Go
+* Emulador Android
+* Simulador iOS
+* Navegador Web (Expo Web)
+
+
+
+
+
+
+
