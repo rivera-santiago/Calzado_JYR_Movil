@@ -1,11 +1,10 @@
+import 'react-native-url-polyfill/auto';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import 'react-native-reanimated';
-
 import { ToastProvider } from '@/components/ui/toast';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
@@ -26,10 +25,11 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const { isLoading, initializeAuth, token } = useAuthStore();
   useEffect(() => {
-    // Inicializar auth, DB local y favoritos
     initializeAuth();
-    initDatabase().catch((e) => console.warn('DB init failed', e));
-    useFavoritesStore.getState().load();
+    Promise.all([
+      initDatabase().catch((e) => console.warn('DB init failed', e)),
+      useFavoritesStore.getState().load(),
+    ])
   }, [initializeAuth]);
 
   // Configure sync manager when token becomes available (token may be set after initializeAuth resolves)

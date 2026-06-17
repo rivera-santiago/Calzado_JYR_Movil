@@ -1,11 +1,20 @@
 import { Platform } from 'react-native'
 
+let SecureStore: typeof import('expo-secure-store') | null = null
+
+async function getSecureStore() {
+  if (!SecureStore) {
+    SecureStore = await import('expo-secure-store')
+  }
+  return SecureStore
+}
+
 export async function getItem(key: string): Promise<string | null> {
   try {
     if (Platform.OS !== 'web') {
-      const SecureStore = await import('expo-secure-store')
-      if (SecureStore && typeof SecureStore.getItemAsync === 'function') {
-        return await SecureStore.getItemAsync(key)
+      const ss = await getSecureStore()
+      if (ss && typeof ss.getItemAsync === 'function') {
+        return await ss.getItemAsync(key)
       }
     }
   } catch (e) {
@@ -23,9 +32,9 @@ export async function getItem(key: string): Promise<string | null> {
 export async function setItem(key: string, value: string): Promise<void> {
   try {
     if (Platform.OS !== 'web') {
-      const SecureStore = await import('expo-secure-store')
-      if (SecureStore && typeof SecureStore.setItemAsync === 'function') {
-        await SecureStore.setItemAsync(key, value)
+      const ss = await getSecureStore()
+      if (ss && typeof ss.setItemAsync === 'function') {
+        await ss.setItemAsync(key, value)
         return
       }
     }
@@ -41,9 +50,9 @@ export async function setItem(key: string, value: string): Promise<void> {
 export async function deleteItem(key: string): Promise<void> {
   try {
     if (Platform.OS !== 'web') {
-      const SecureStore = await import('expo-secure-store')
-      if (SecureStore && typeof SecureStore.deleteItemAsync === 'function') {
-        await SecureStore.deleteItemAsync(key)
+      const ss = await getSecureStore()
+      if (ss && typeof ss.deleteItemAsync === 'function') {
+        await ss.deleteItemAsync(key)
         return
       }
     }

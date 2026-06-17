@@ -13,20 +13,24 @@ type FavoritesState = {
 
 const KEY = 'calzado_jyr_favorites'
 
+let persistTimer: ReturnType<typeof setTimeout> | null = null
+function persistFavs(items: FavoritesMap) {
+  if (persistTimer) clearTimeout(persistTimer)
+  persistTimer = setTimeout(() => {
+    setItem(KEY, JSON.stringify(items)).catch((e) => console.warn('fav persist failed', e))
+  }, 300)
+}
+
 export const useFavoritesStore = create<FavoritesState>((set, get) => ({
   favorites: {},
   setFavorites: (f) => set({ favorites: f }),
   isFavorite: (id: string) => !!get().favorites[id],
   toggle: async (id: string) => {
-    try {
-      const current = { ...(get().favorites || {}) }
-      const next = !current[id]
-      current[id] = next
-      set({ favorites: current })
-      await setItem(KEY, JSON.stringify(current))
-    } catch (e) {
-      console.warn('Failed to toggle favorite', e)
-    }
+    const current = { ...(get().favorites || {}) }
+    const next = !current[id]
+    current[id] = next
+    set({ favorites: current })
+    persistFavs(current)
   },
   load: async () => {
     try {

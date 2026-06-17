@@ -1,6 +1,14 @@
 import { deleteItem, getItem, setItem } from '@/lib/secureStore'
 import { create } from 'zustand'
 
+let persistTimer: ReturnType<typeof setTimeout> | null = null
+function persistCart(items: Record<string, CartItem>) {
+  if (persistTimer) clearTimeout(persistTimer)
+  persistTimer = setTimeout(() => {
+    setItem(KEY, JSON.stringify(items)).catch((e) => console.warn('cart persist failed', e))
+  }, 300)
+}
+
 export type CartItem = {
   id: string
   name: string
@@ -33,20 +41,20 @@ export const useCartStore = create<CartState>((set, get) => ({
       items[item.id] = item
     }
     set({ items })
-    try { await setItem(KEY, JSON.stringify(items)) } catch (e) { console.warn('cart add failed', e) }
+    persistCart(items)
   },
   remove: async (id) => {
     const items = { ...(get().items || {}) }
     delete items[id]
     set({ items })
-    try { await setItem(KEY, JSON.stringify(items)) } catch (e) { console.warn('cart remove failed', e) }
+    persistCart(items)
   },
   updateQty: async (id, qty) => {
     const items = { ...(get().items || {}) }
     if (items[id]) {
       items[id].qty = Math.max(1, Math.min(99, qty))
       set({ items })
-      try { await setItem(KEY, JSON.stringify(items)) } catch (e) { console.warn('cart updateQty failed', e) }
+      persistCart(items)
     }
   },
   clear: async () => {
