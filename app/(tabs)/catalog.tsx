@@ -33,7 +33,7 @@ export default function CatalogScreen() {
     Animated.timing(fadeAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start()
   }, [fadeAnim])
 
-  const { data: cats = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategoriesAPI })
+  const { data: cats = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategoriesAPI, staleTime: 1000 * 60 * 10 })
   const router = useRouter()
 
   const { data: products = [], isLoading, isError, refetch, isFetching } = useProducts({ search: query, categoryIds })

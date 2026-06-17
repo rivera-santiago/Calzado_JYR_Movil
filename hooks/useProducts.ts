@@ -6,6 +6,8 @@ export function useProducts({ categoryIds, search, sort }: { categoryIds?: strin
   const key = ['products', categoryIds ? categoryIds.join(',') : null, search, sort]
   return useQuery<Product[], Error>({
     queryKey: key,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
     queryFn: async () => {
       // fetch all products then filter client-side for now; API accepts categoryId single param, so map client-side for multiple
       const products = await fetchProductsAPI(undefined)

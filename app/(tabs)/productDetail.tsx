@@ -27,9 +27,9 @@ export default function ProductDetail() {
     Animated.timing(screenOpacity, { toValue: 1, duration: 350, useNativeDriver: true }).start()
   }, [screenOpacity])
 
-  const { data: products = [], isLoading } = useQuery<Product[]>({ queryKey: ['products', 'detail', id], queryFn: () => fetchProductsAPI() })
+  const { data: products = [], isLoading } = useQuery<Product[]>({ queryKey: ['products', null, null, null], queryFn: () => fetchProductsAPI(), staleTime: 1000 * 60 * 5 })
   const product: Product | null = products.find((p) => p.id === id) || null
-  const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategoriesAPI })
+  const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategoriesAPI, staleTime: 1000 * 60 * 10 })
   const category: Category | undefined = categories.find((c) => c.id === product?.category_id)
 
   const handleWhatsApp = React.useCallback(() => {
